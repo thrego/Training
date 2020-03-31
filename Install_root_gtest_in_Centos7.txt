@@ -1,0 +1,41 @@
+Install root in the Centos 7:
+
+Install cmake (https://gist.github.com/1duo/38af1abd68a2c7fe5087532ab968574e and https://cmake.org/install/):
+1. wget https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0.tar.gz (https://cmake.org/download/ - Take last version);
+
+Install openssl (https://cloudwafer.com/blog/installing-openssl-on-centos-7/ and https://www.openssl.org/source/)
+export OPENSSL_ROOT_DIR=/usr/local/ssl/
+export OPENSSL_INCLUDE_DIR=/usr/local/ssl/include/openssl/
+
+tar zxvf cmake-3.*
+cd cmake-3.*
+./bootstrap --prefix=/usr/local
+make
+sudo make install
+
+Install googletest and googlemock (https://gist.github.com/massenz/41bb2c8375294f4d9927 and https://github.com/google/googletest/blob/master/googletest/README.md)
+
+git clone git@github.com:google/googletest.git
+cd googletest
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local -Dgtest_build_samples=ON -Dgtest_build_tests=ON -Dgmock_build_tests=ON  -DBUILD_SHARED_LIBS=ON -DBUILD_GMOCK=ON -DINSTALL_GTEST=ON ../
+Set in the begining in CMakeList.txt with():
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+make
+make test
+sudo make install
+
+./googletest/sample1_unittest
+C
+sudo ldconfig -v | egrep 'gtest|gmock'
+
+Hello World:
+https://www.srcmake.com/home/google-cpp-test-framework
+
+Add in the begining in the CMakeList.txt:
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
