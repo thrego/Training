@@ -11,9 +11,5 @@ find_package(GTest REQUIRED)
 #include_directories(${GTEST_INCLUDE_DIRS})
  
 # Link runTests with what we want to test and the GTest and pthread library
-add_executable(executeTests src/mock_turtle_test.cpp)
+add_executable(executeTests src/GoogleTestDemo.cpp)
 target_link_libraries(executeTests ${GTEST_LIBRARIES} pthread gmock)
-
-#include_directories(../ ../vendor/googletest/googletest/include ../vendor/googletest/googlemock/include)
-#add_executable(order order.cpp)
-#target_link_libraries(order gmock gtest)
